@@ -52,10 +52,14 @@ public class UserController {
     }
 
     @PostMapping("/update")
-    public String updateUser(@RequestParam(name = "id") long id, @ModelAttribute User user) {
-        user.setId(id);
-        userService.createOrUpdateUser(user);
-        return "redirect:/";
+    public String updateUser(@RequestParam(name = "id") long id, @Valid @ModelAttribute User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "error";
+        } else {
+            user.setId(id);
+            userService.createOrUpdateUser(user);
+            return "redirect:/";
+        }
     }
 
 }

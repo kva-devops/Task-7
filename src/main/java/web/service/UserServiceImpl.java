@@ -14,25 +14,21 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
 
-    @Transactional
     @Override
     public User findUserById(long id) {
         return userDao.findUserById(id);
     }
 
-    @Transactional
     @Override
     public void deleteUserById(long id) {
         userDao.deleteUserById(id);
     }
 
-    @Transactional
     @Override
     public List<User> getAllUsers() {
         return userDao.getAllUsers();
     }
 
-    @Transactional
     @Override
     public void createOrUpdateUser(User user) {
         if (user.getId() == null) {
